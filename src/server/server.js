@@ -7,7 +7,7 @@ import morgan from "morgan";
 // import dotenv from "dotenv";
 
 const data_uri =
-  "mongodb+srv://tri:team2447@cluster0-wrndr.azure.mongodb.net/smart-lighting?retryWrites=true&w=majority";
+  "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority";
 // dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 mongoose.connect(data_uri, {
   useNewUrlParser: true,

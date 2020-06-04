@@ -7,8 +7,31 @@ export const lessonSchema = new Lessons({
   title: { type: String, required: true },
   description: { type: String, required: true },
   created: { type: Date, required: true, default: Date.now },
-  files: [{ type: ObjectId, ref: "Files.files" }],
+  files: { type: ObjectId, ref: "Files.files" },
 });
+
+lessonSchema.statics.getLesson = async function (lessonId) {
+  return await this.findOne({ _id: mongoose.Types.ObjectId(lessonId) })
+    .select("-__v")
+    .lean();
+};
+
+lessonSchema.statics.createLesson = async function (lessonDetails) {
+  let { title, description } = lessonDetails;
+  let result = await this.create({
+    title,
+    description,
+  });
+  result = result.toObject();
+  delete result.__v;
+  delete result.created;
+  return result;
+};
+
+lessonSchema.statics.deleteLesson = async function (lessonId) {
+  // handle file deletion
+  return await this.deleteOne({ _id: mongoose.Types.ObjectId(lessonId) });
+};
 
 const lessonModel = mongoose.model("Lessons", lessonSchema);
 export default lessonModel;

@@ -20,6 +20,7 @@ export const writeToGridFS = (file) => {
             owner: file.owner,
             date: Date.now(),
             lesson: file.lesson,
+            // add to lesson
           },
         });
         bucket.write(file.data, async (err) => {

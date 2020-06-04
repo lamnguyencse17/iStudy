@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-router.use("/", (req, res, next) => {
-  next();
-});
+router.use(
+  "/notes/",
+  (req, res, next) => {
+    next();
+  },
+  require("./models/notes")
+);
 
 module.exports = router;
