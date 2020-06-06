@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import forumModel from "./Forums";
+import userModel from "./Users";
 
 const Courses = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
@@ -13,8 +14,23 @@ export const courseSchema = new Courses({
   forumId: { type: ObjectId, ref: "Forums", default: null },
 });
 
+courseSchema.statics.getCourse = async function (courseId) {
+  return await this.findOne({ _id: mongoose.Types.ObjectId(courseId) })
+    .select("-__v -forumId")
+    .populate({
+      path: "lessons",
+      select: "title",
+      options: { lean: true },
+    })
+    .populate({
+      path: "owner",
+      select: "name",
+      options: { lean: true },
+    })
+    .lean();
+};
+
 courseSchema.statics.createCourse = async function (courseDetails) {
-  // handle forumId
   let { owner, title, description } = courseDetails;
   let result = await this.create({
     owner: mongoose.Types.ObjectId(owner),
@@ -33,7 +49,7 @@ courseSchema.statics.createCourse = async function (courseDetails) {
 courseSchema.post("save", async (doc, next) => {
   let { title, owner, _id } = doc;
   let result = await forumModel.createForum({ courseId: _id, title, owner });
-  // Add to Users Too!
+  await userModel.addCourse(owner, _id);
   this.updateOne(
     { _id: mongoose.Types.ObjectId(_id) },
     {
@@ -42,6 +58,21 @@ courseSchema.post("save", async (doc, next) => {
   );
   next();
 });
+
+courseSchema.statics.removeUser = async function (userId) {
+  return await this.updateMany(
+    {
+      $in: {
+        users: [mongoose.Types.ObjectId(userId)],
+      },
+    },
+    {
+      $pull: {
+        users: mongoose.Types.ObjectId(userId),
+      },
+    }
+  );
+};
 
 const courseModel = mongoose.model("Courses", courseSchema);
 export default courseModel;

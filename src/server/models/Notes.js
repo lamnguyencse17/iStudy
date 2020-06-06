@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import userModel from "./Users";
 
 const Notes = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
@@ -32,7 +33,12 @@ noteSchema.statics.createNote = async function (noteDetails) {
 };
 
 noteSchema.statics.deleteNote = async function (noteId) {
+  await userModel.deleteNote(noteId);
   return await this.deleteOne({ _id: mongoose.Types.ObjectId(noteId) });
+};
+
+noteSchema.statics.clearNotes = async function (userId) {
+  return await this.deleteMany({ onwer: mongoose.Types.ObjectId(userId) });
 };
 
 const noteModel = mongoose.model("Notes", noteSchema);

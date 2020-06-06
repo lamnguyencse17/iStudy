@@ -37,5 +37,10 @@ forumSchema.statics.createForum = async function (forumDetails) {
   return result;
 };
 
+forumSchema.statics.deleteForum = async function (forumId) {
+  // handle file deletion
+  return await this.deleteOne({ _id: mongoose.Types.ObjectId(forumId) });
+};
+
 const forumModel = mongoose.model("Forums", forumSchema);
 export default forumModel;

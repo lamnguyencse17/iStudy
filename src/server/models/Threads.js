@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import replyModel from "./Replies";
 
 const Threads = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
@@ -36,6 +37,7 @@ threadSchema.statics.createThread = async function (threadDetails) {
 };
 
 threadSchema.statics.deleteThread = async function (threadId) {
+  replyModel.clearReplies(threadId);
   return await this.deleteOne({ _id: mongoose.Types.ObjectId(threadId) });
 };
 

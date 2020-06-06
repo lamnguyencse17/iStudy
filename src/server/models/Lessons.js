@@ -8,6 +8,7 @@ export const lessonSchema = new Lessons({
   description: { type: String, required: true },
   created: { type: Date, required: true, default: Date.now },
   files: { type: ObjectId, ref: "Files.files" },
+  courseId: { type: ObjectId, ref: "Courses" },
 });
 
 lessonSchema.statics.getLesson = async function (lessonId) {
@@ -31,6 +32,11 @@ lessonSchema.statics.createLesson = async function (lessonDetails) {
 lessonSchema.statics.deleteLesson = async function (lessonId) {
   // handle file deletion
   return await this.deleteOne({ _id: mongoose.Types.ObjectId(lessonId) });
+};
+
+lessonSchema.statics.clearLessons = async function (forumId) {
+  // handle file deletion
+  return await this.deleteMany({ courseId: mongoose.Types.ObjectId(lessonId) });
 };
 
 const lessonModel = mongoose.model("Lessons", lessonSchema);
