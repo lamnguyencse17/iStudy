@@ -42,22 +42,38 @@ export const writeToGridFS = (file) => {
   );
 };
 
-export const getFileFromGridFS = (filename) => {
+export const getFileFromGridFS = (fileId) => {
   return new Promise((resolve, reject) =>
     mongoConnection()
       .then(async (client) => {
         let gridFSBucket = new GridFSBucket(client.db(), {
           bucketName: "Files",
         });
-        let file = await gridFSBucket
-          .find({ filename: { $regex: filename } })
-          .toArray();
+        let file = await gridFSBucket.find({ _id: fileId }).toArray();
         filename = file[0].filename;
         resolve({
           filename,
           contentType: file[0].contentType,
           data: gridFSBucket.openDownloadStreamByName(filename),
         });
+      })
+      .catch(async (err) => {
+        reject(err);
+      })
+  );
+};
+
+export const clearFileFromLesson = (lessonId) => {
+  // lessonId is string type
+  return new Promise((resolve, reject) =>
+    mongoConnection()
+      .then(async (client) => {
+        let gridFSBucket = new GridFSBucket(client.db(), {
+          bucketName: "Files",
+        });
+        // TODO
+        // Check https://mongodb.github.io/node-mongodb-native/3.6/api/GridFSBucket.html
+        // resolve(true||false)
       })
       .catch(async (err) => {
         reject(err);

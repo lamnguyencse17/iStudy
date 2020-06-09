@@ -18,6 +18,13 @@ userSchema.statics.getUser = async function (email) {
   return await this.findOne({ email }).select("-__v").lean();
 };
 
+userSchema.statics.isUserExist = async function (email) {
+  // TODO
+  // use getUser and createUser
+  // remove -__v from doc
+  // return {...doc, isNew: true || false}
+};
+
 userSchema.statics.createUser = async function (userDetails) {
   let { name, email, type } = userDetails;
   let result = await this.create({
