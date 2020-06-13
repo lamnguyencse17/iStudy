@@ -24,7 +24,7 @@ threadSchema.statics.getThread = async function (threadId) {
 };
 
 threadSchema.statics.createThread = async function (threadDetails) {
-  let { poster, content, title, content } = threadDetails;
+  let { poster, content, title } = threadDetails;
   let result = await this.create({
     content,
     title,

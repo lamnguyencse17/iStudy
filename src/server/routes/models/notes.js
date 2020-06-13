@@ -8,13 +8,13 @@ router.get("/:noteId", async (req, res) => {
   return res.status(200).json(result);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   let { owner, content, title, lesson } = req.body;
-  let result = await noteModel.createNote({ owner, content, title, lesson })
-  return res.status(200).json(result)
+  let result = await noteModel.createNote({ owner, content, title, lesson });
+  return res.status(200).json(result);
 });
 
-router.delete("/:noteId", (req, res) => {
+router.delete("/:noteId", async (req, res) => {
   let result = await noteModel.deleteNote(req.params.noteId);
   return res.status(200).json(result);
 });

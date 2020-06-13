@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
+import upload from "express-fileupload";
 // import path from "path";
 // import dotenv from "dotenv";
 
@@ -15,6 +16,13 @@ mongoose.connect(data_uri, {
 });
 
 const app = express();
+app.use(
+  upload({
+    safeFileNames: true,
+    preserveExtension: 4,
+    debug: true,
+  })
+);
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(bodyParser.json());

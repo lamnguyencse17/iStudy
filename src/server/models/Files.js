@@ -1,7 +1,7 @@
-// const MongoClient = require("mongodb").MongoClient;
 import { MongoClient, GridFSBucket } from "mongodb";
 import dotenv from "dotenv";
 import path from "path";
+import mongoose from "mongoose";
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
@@ -15,7 +15,7 @@ export const writeToGridFS = (file) => {
           bucketName: "Files",
         });
         let bucket = gridFSBucket.openUploadStream(file.name, {
-          contentType: file.type,
+          contentType: file.mimetype,
           metadata: {
             owner: file.owner,
             date: Date.now(),
@@ -71,12 +71,24 @@ export const clearFileFromLesson = (lessonId) => {
         let gridFSBucket = new GridFSBucket(client.db(), {
           bucketName: "Files",
         });
-        // TODO
-        // Check https://mongodb.github.io/node-mongodb-native/3.6/api/GridFSBucket.html
-        // resolve(true||false)
+        let file = await gridFSBucket
+          .find({ "metadata.lesson": lessonId })
+          .toArray();
+        gridFSBucket.delete(
+          mongoose.Types.ObjectId(file[0]._id),
+          (err, result) => {
+            if (err) {
+              console.log(err);
+              reject(false);
+            } else {
+              resolve(true);
+            }
+          }
+        );
       })
       .catch(async (err) => {
-        reject(err);
+        console.log(err);
+        reject(false);
       })
   );
 };
@@ -84,10 +96,13 @@ export const clearFileFromLesson = (lessonId) => {
 const mongoConnection = () => {
   return new Promise((resolve, reject) => {
     if (connection) resolve(connection);
-    MongoClient.connect(process.env.DATA_URI, (err, db) => {
-      if (err) reject(err);
-      connection = db;
-      resolve(connection);
-    });
+    MongoClient.connect(
+      "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority",
+      (err, db) => {
+        if (err) reject(err);
+        connection = db;
+        resolve(connection);
+      }
+    );
   });
 };
