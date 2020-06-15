@@ -4,26 +4,20 @@ import courseModel from "../../models/Courses";
 const router = express.Router();
 
 router.get("/:courseId", async (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {courseId} = req.params
+  let result = await courseModel.getCourse(courseId)
   return res.status(200).json(result);
 });
 
 router.post("/", (req, res) => {
-  // create new user
-  // body:  owner, title, description
-  // passed in as object
-  //   let result = await function goes here;
+  let {owner, title, description } = req.body
+  let result = await courseModel.createCourse({owner, title, description })
   return res.status(200).json(result);
 });
 
 router.delete("/:courseId", (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {replyId} = req.params
+  let result = await courseModel.deleteCourse(replyId)
   return res.status(200).json(result);
 });
 

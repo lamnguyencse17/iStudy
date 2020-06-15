@@ -4,26 +4,20 @@ import replyModel from "../../models/Replies";
 const router = express.Router();
 
 router.get("/:replyId", async (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {replyId} = req.params
+  let result = await replyModel.getReply(replyId)
   return res.status(200).json(result);
 });
 
 router.post("/", (req, res) => {
-  // create new user
-  // body:  poster, content, threadId
-  // passed in as object
-  //   let result = await function goes here;
+  let {poster, content, threadId} = req.body
+  let result = await replyModel.createReply({poster, content, threadId})
   return res.status(200).json(result);
 });
 
 router.delete("/:replyId", (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {replyId} = req.params
+  let result = await replyModel.deleteReply(replyId)
   return res.status(200).json(result);
 });
 

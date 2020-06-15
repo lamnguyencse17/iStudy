@@ -4,26 +4,20 @@ import lessonModel from "../../models/Lessons";
 const router = express.Router();
 
 router.get("/:lessonId", async (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {lessonId} = req.params
+  let result = await lessonModel.getLesson(lessonId)
   return res.status(200).json(result);
 });
 
 router.post("/", (req, res) => {
-  // create new user
-  // body:  title, description
-  // passed in as object
-  //   let result = await function goes here;
+  let {title, description, courseId } = req.body
+  let result = await lessonModel.createLesson({title, description, courseId })
   return res.status(200).json(result);
 });
 
 router.delete("/:lessonId", (req, res) => {
-  // TODO
-  // use params
-  //  use functions in userModel with await
-  //   let result = await function goes here;
+  let {replyId} = req.params
+  let result = await lessonModel.deleteLesson(replyId)
   return res.status(200).json(result);
 });
 
