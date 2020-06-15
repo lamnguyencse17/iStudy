@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 const Lessons = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
@@ -18,10 +18,11 @@ lessonSchema.statics.getLesson = async function (lessonId) {
 };
 
 lessonSchema.statics.createLesson = async function (lessonDetails) {
-  let { title, description } = lessonDetails;
+  let { title, description, courseId } = lessonDetails;
   let result = await this.create({
     title,
     description,
+    courseId: mongoose.Types.ObjectId(courseId),
   });
   result = result.toObject();
   delete result.__v;
