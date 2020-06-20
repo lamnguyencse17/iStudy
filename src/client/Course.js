@@ -1,0 +1,37 @@
+import React, { Component } from "react";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+
+export default class Courses extends Component {
+  render() {
+    return (
+      <Container fluid>
+        <Image
+          fluid
+          src="https://www.ox.ac.uk/sites/files/oxford/styles/ow_large_feature/public/field/field_image_main/Choosing%20what%20to%20study.jpg?itok=udCvmqt9"
+          className="mx-auto d-block img-responsive m-auto"
+        />
+        <Tabs
+          defaultActiveKey="profile"
+          id="uncontrolled-tab-example"
+          className="m-5"
+        >
+          <Tab eventKey="toc" title="Table of contents" className="m-5">
+            Placeholder
+          </Tab>
+          <Tab eventKey="description" title="Description" className="m-5">
+            Placeholder
+          </Tab>
+          <Tab eventKey="discussion" title="Discussion" className="m-5">
+            Placeholder
+          </Tab>
+          <Tab eventKey="related" title="Related courses" className="m-5">
+            Placeholder
+          </Tab>
+        </Tabs>
+      </Container>
+    );
+  }
+}

@@ -3,17 +3,21 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import Menu from "./Menu";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
   render() {
     return (
       <>
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">iStudy</Navbar.Brand>
+          <Navbar.Brand href="/">iStudy</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="#home">HOME</Nav.Link>
-            <Nav.Link href="#browse">BROWSE</Nav.Link>
+            <Nav.Link href="/home">HOME</Nav.Link>
+            <Nav.Link href="/browse">BROWSE</Nav.Link>
           </Nav>
           <Form
             inline
@@ -28,9 +32,15 @@ class NavBar extends Component {
               className="mr-sm-2 w-100"
             />
           </Form>
-          <Nav className="mr-1">
-            <Nav.Link href="#start">START</Nav.Link>
-          </Nav>
+          {this.props.location.pathname == "/" ? (
+            <Nav className="mr-1">
+              <Nav.Link href="/home">START</Nav.Link>
+            </Nav>
+          ) : (
+            <Nav className="mr-1">
+              <Menu />
+            </Nav>
+          )}
         </Navbar>
       </>
     );
