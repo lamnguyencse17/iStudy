@@ -30,6 +30,11 @@ courseSchema.statics.getCourse = async function (courseId) {
     .lean();
 };
 
+courseSchema.statics.getManyCourses = async function () {
+  let result = await this.find().sort({ _id: -1 }).limit(10).lean();
+  console.log(result);
+};
+
 courseSchema.statics.createCourse = async function (courseDetails) {
   let { owner, title, description } = courseDetails;
   let result = await this.create({

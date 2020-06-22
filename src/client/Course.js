@@ -5,6 +5,12 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
 export default class Courses extends Component {
+  constructor(props) {
+    //TODO:
+    // Get courseId (params somewhere in props)
+    // Get data here from `http://localhost:3000/api/models/course/${courseId}` using axios
+    // Destructured to this.state
+  }
   render() {
     return (
       <Container fluid>
@@ -18,7 +24,7 @@ export default class Courses extends Component {
           id="uncontrolled-tab-example"
           className="m-5"
         >
-          <Tab eventKey="toc" title="Table of contents" className="m-5">
+          <Tab eventKey="table" title="Table of contents" className="m-5">
             Placeholder
           </Tab>
           <Tab eventKey="description" title="Description" className="m-5">

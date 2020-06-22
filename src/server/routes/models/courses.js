@@ -4,20 +4,25 @@ import courseModel from "../../models/Courses";
 const router = express.Router();
 
 router.get("/:courseId", async (req, res) => {
-  let {courseId} = req.params
-  let result = await courseModel.getCourse(courseId)
+  let { courseId } = req.params;
+  let result = await courseModel.getCourse(courseId);
   return res.status(200).json(result);
 });
 
-router.post("/", (req, res) => {
-  let {owner, title, description } = req.body
-  let result = await courseModel.createCourse({owner, title, description })
+router.get("/", async (req, res) => {
+  let result = await courseModel.getManyCourses();
   return res.status(200).json(result);
 });
 
-router.delete("/:courseId", (req, res) => {
-  let {replyId} = req.params
-  let result = await courseModel.deleteCourse(replyId)
+router.post("/", async (req, res) => {
+  let { owner, title, description } = req.body;
+  let result = await courseModel.createCourse({ owner, title, description });
+  return res.status(200).json(result);
+});
+
+router.delete("/:courseId", async (req, res) => {
+  let { replyId } = req.params;
+  let result = await courseModel.deleteCourse(replyId);
   return res.status(200).json(result);
 });
 

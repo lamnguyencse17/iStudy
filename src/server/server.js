@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import upload from "express-fileupload";
+import courseModel from "./models/Courses";
+import userModel from "./models/Users";
 // import path from "path";
 // import dotenv from "dotenv";
 
@@ -23,6 +25,7 @@ app.use(
     debug: true,
   })
 );
+
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(bodyParser.json());
