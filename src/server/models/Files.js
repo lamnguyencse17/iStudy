@@ -49,8 +49,11 @@ export const getFileFromGridFS = (fileId) => {
         let gridFSBucket = new GridFSBucket(client.db(), {
           bucketName: "Files",
         });
-        let file = await gridFSBucket.find({ _id: fileId }).toArray();
-        filename = file[0].filename;
+        let file = await gridFSBucket
+          .find({ _id: mongoose.Types.ObjectId(fileId) })
+          .toArray();
+        console.log(file);
+        let filename = file[0].filename;
         resolve({
           filename,
           contentType: file[0].contentType,
