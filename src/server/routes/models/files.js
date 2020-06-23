@@ -1,11 +1,36 @@
 import express from "express";
-import { writeToGridFS } from "../../models/Files";
+import { writeToGridFS, getFileFromGridFS } from "../../models/Files";
+import { Readable } from "stream";
 const router = express.Router();
 
-router.get("/:filename", async (req, res) => {
+router.get("/:fileId", async (req, res) => {
   let fileId = req.params.fileId;
-  // Look at: https://github.com/lamnguyencse17/Sender/blob/master/src/server/routes/protected/file.js
-  // remove the cryptography header leave only the contentType
+  getFileFromGridFS(fileId).then(async (file, err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let buf;
+      let bufs = [];
+      file.data.on("data", async (data) => {
+        bufs.push(data);
+      });
+      file.data.on("end", async () => {
+        buf = Buffer.concat(bufs);
+        res.setHeader("Content-Type", file.contentType);
+        res.setHeader(
+          "Content-Disposition",
+          `attachment;filename=${file.filename}`
+        );
+        let readableInstanceStream = new Readable({
+          read() {
+            this.push(buf);
+            this.push(null);
+          },
+        });
+        readableInstanceStream.pipe(res);
+      });
+    }
+  });
 });
 
 router.post("/", async (req, res) => {
