@@ -7,21 +7,26 @@ import axios from "axios";
 
 export default class Course extends Component {
   constructor(props) {
-    //TODO:
-    // Get courseId (params somewhere in props)
-    // Get data here from `http://localhost:3000/api/models/course/${courseId}` using axios
-    // Destructured to this.state
     super(props);
+    this.state = {
+      _id: "",
+      title: "",
+      description: "",
+    };
   }
   componentDidMount() {
     axios
       .get(
         `http://localhost:3000/api/models/courses/${this.props.match.params.courseId}`
       )
-      .then((res) => {
-        this.setState = {
-          ...res.data,
-        };
+      .then((res, err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.setState({
+            ...res.data,
+          });
+        }
       });
   }
 
@@ -33,19 +38,23 @@ export default class Course extends Component {
           src="https://www.ox.ac.uk/sites/files/oxford/styles/ow_large_feature/public/field/field_image_main/Choosing%20what%20to%20study.jpg?itok=udCvmqt9"
           className="mx-auto d-block img-responsive m-auto"
         />
+        <div className="h1 ml-5 mt-2">
+          {this.state.title == "" ? <></> : this.state.title}
+        </div>
         <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
           className="m-5"
+          onSelect={(key) => console.log(key)}
         >
           <Tab eventKey="table" title="Table of contents" className="m-5">
             Placeholder
           </Tab>
           <Tab eventKey="description" title="Description" className="m-5">
-            Placeholder
+            {this.state.description == "" ? <></> : this.state.description}
           </Tab>
           <Tab eventKey="discussion" title="Discussion" className="m-5">
-            Placeholder
+            A link will be here instead
           </Tab>
           <Tab eventKey="related" title="Related courses" className="m-5">
             Placeholder

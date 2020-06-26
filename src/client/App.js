@@ -6,6 +6,7 @@ import Main from "./Main";
 import About from "./About";
 import Browse from "./Browse";
 import Course from "./Course";
+import Lesson from "./Lesson";
 
 export default class App extends Component {
   constructor() {
@@ -21,6 +22,12 @@ export default class App extends Component {
           <Route path="/about" render={(props) => <About {...props} />} />
           <Route path="/home" render={(props) => <Main {...props} />} />
           <Route path="/browse" render={(props) => <Browse {...props} />} />
+          <Route path="/lesson">
+            <Route
+              path="/lesson/:lessonId"
+              render={(props) => <Lesson {...props} />}
+            ></Route>
+          </Route>
           <Route path="/course">
             <Route
               path="/course/:courseId"

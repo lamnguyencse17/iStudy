@@ -37,7 +37,7 @@ class NavBar extends Component {
               <Nav.Link href="/home">START</Nav.Link>
             </Nav>
           ) : (
-            <Nav className="mr-1">
+            <Nav className="mr-5">
               <Menu />
             </Nav>
           )}
