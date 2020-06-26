@@ -3,14 +3,28 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import axios from "axios";
 
-export default class Courses extends Component {
+export default class Course extends Component {
   constructor(props) {
     //TODO:
     // Get courseId (params somewhere in props)
     // Get data here from `http://localhost:3000/api/models/course/${courseId}` using axios
     // Destructured to this.state
+    super(props);
   }
+  componentDidMount() {
+    axios
+      .get(
+        `http://localhost:3000/api/models/courses/${this.props.match.params.courseId}`
+      )
+      .then((res) => {
+        this.setState = {
+          ...res.data,
+        };
+      });
+  }
+
   render() {
     return (
       <Container fluid>

@@ -21,7 +21,12 @@ export default class App extends Component {
           <Route path="/about" render={(props) => <About {...props} />} />
           <Route path="/home" render={(props) => <Main {...props} />} />
           <Route path="/browse" render={(props) => <Browse {...props} />} />
-          <Route path="/course" render={(props) => <Course {...props} />} />
+          <Route path="/course">
+            <Route
+              path="/course/:courseId"
+              render={(props) => <Course {...props} />}
+            />
+          </Route>
         </Switch>
       </>
     );
