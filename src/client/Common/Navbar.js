@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Menu from "./Menu";
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   constructor(props) {
@@ -14,10 +15,16 @@ class NavBar extends Component {
     return (
       <>
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">iStudy</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            iStudy
+          </Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/home">HOME</Nav.Link>
-            <Nav.Link href="/browse">BROWSE</Nav.Link>
+            <Nav.Link as={Link} to="/home">
+              HOME
+            </Nav.Link>
+            <Nav.Link as={Link} to="/browse">
+              BROWSE
+            </Nav.Link>
           </Nav>
           <Form
             inline
@@ -34,7 +41,9 @@ class NavBar extends Component {
           </Form>
           {this.props.location.pathname == "/" ? (
             <Nav className="mr-1">
-              <Nav.Link href="/home">START</Nav.Link>
+              <Nav.Link as={Link} to="/home">
+                START
+              </Nav.Link>
             </Nav>
           ) : (
             <Nav className="mr-5">
