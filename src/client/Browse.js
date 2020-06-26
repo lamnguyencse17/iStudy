@@ -5,27 +5,37 @@ import axios from "axios";
 
 export default class Browse extends Component {
   constructor(props) {
-    //TODO:
-    // Get data here from http://localhost:3000/api/models/courses using axios
-    // assign as this.state.courses
     super(props);
+    this.state = {
+      courses: [],
+    };
   }
-
   componentDidMount() {
     axios.get(`http://localhost:3000/api/models/courses`).then((res) => {
-      console.log(res.data);
-      this.state = {
+      this.setState({
         courses: [...res.data],
-      };
+      });
     });
   }
 
   render() {
     return (
       <Container fluid className="m-auto p-3">
-        <CourseAccordion className="mb-5" />
-        <CourseAccordion className="mb-5" />
-        <CourseAccordion className="mb-5" />
+        {this.state.courses.length == 0 ? (
+          <> </>
+        ) : (
+          this.state.courses.map((course) => {
+            return (
+              <CourseAccordion
+                key={course._id}
+                className="mb-5"
+                description={course.description}
+                _id={course._id}
+                title={course.title}
+              />
+            );
+          })
+        )}
       </Container>
     );
   }

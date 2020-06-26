@@ -21,10 +21,10 @@ export default class CourseAccordion extends Component {
                   eventKey="0"
                   className="bg-white "
                 >
-                  Click me!
+                  {this.props.title}
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
-                  <Card.Body>Hello! I'm the body</Card.Body>
+                  <Card.Body>{this.props.description}</Card.Body>
                 </Accordion.Collapse>
               </Col>
             </Row>
