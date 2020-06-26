@@ -3,47 +3,27 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import axios from 'axios';
+import axios from "axios";
 
-export default class Courses extends Component {
+export default class Course extends Component {
   constructor(props) {
     //TODO:
     // Get courseId (params somewhere in props)
     // Get data here from `http://localhost:3000/api/models/course/${courseId}` using axios
     // Destructured to this.state
     super(props);
-    console.log(props);
-    this.state = {
-      data: {
-        title: "",
-        description: "",
-      },
-      error: null,
-      isLoaded: false,
-   }
   }
-
-  getCourseID = async () => {
-    try {
-        const {data} = await axios.get(`http://localhost:3000/api/models/course/${courseId}`);
-        return data;
-    } catch (err) {
-        console.log(err.message);
-    }
-  }
-
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/models/course/${courseId}`)
-      .then(res => {
-        const Courses = res.data;
-        this.setState({ Courses });
-      })
+    axios
+      .get(
+        `http://localhost:3000/api/models/courses/${this.props.match.params.courseId}`
+      )
+      .then((res) => {
+        this.setState = {
+          ...res.data,
+        };
+      });
   }
-
-  onChange = ({data: {title, description}}) =>
-  this.setState(prevState => ({
-      data: { }
-  }));
 
   render() {
     return (

@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
   if (result) {
     return res.status(200).json(result);
   }
-  let result = await userModel.createUser(req.body);
+  result = await userModel.createUser(req.body);
   return res.status(200).json(result);
 });
 
