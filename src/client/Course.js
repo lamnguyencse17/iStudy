@@ -4,6 +4,8 @@ import Image from "react-bootstrap/Image";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import axios from "axios";
+import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
 
 export default class Course extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ export default class Course extends Component {
       _id: "",
       title: "",
       description: "",
+      lessons: [],
     };
   }
   componentDidMount() {
@@ -48,7 +51,17 @@ export default class Course extends Component {
           onSelect={(key) => console.log(key)}
         >
           <Tab eventKey="table" title="Table of contents" className="m-5">
-            Placeholder
+            {this.state.lessons.length == 0 ? (
+              <> </>
+            ) : (
+              this.state.lessons.map((lesson) => {
+                return (
+                  <Nav.Link as={Link} to={`/lesson/${lesson._id}`}>
+                    {lesson.title}
+                  </Nav.Link>
+                );
+              })
+            )}
           </Tab>
           <Tab eventKey="description" title="Description" className="m-5">
             {this.state.description == "" ? <></> : this.state.description}

@@ -6,7 +6,7 @@ export default class Player extends Component {
     return (
       <div>
         <ReactPlayer
-          url={`http://localhost:3000/api/models/files/${this.props.lessonId}`}
+          url={`http://localhost:3000/api/models/files/${this.props.fileId}`}
           controls={true}
         />
       </div>
