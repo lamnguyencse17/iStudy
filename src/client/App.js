@@ -7,6 +7,7 @@ import About from "./About";
 import Browse from "./Browse";
 import Course from "./Course";
 import Lesson from "./Lesson";
+import Forum from "./Forum";
 
 export default class App extends Component {
   constructor() {
@@ -32,6 +33,12 @@ export default class App extends Component {
             <Route
               path="/course/:courseId"
               render={(props) => <Course {...props} />}
+            />
+          </Route>
+          <Route path="/forum">
+            <Route
+              path="/forum/:forumId"
+              render={(props) => <Forum {...props} />}
             />
           </Route>
         </Switch>
