@@ -8,6 +8,7 @@ import Browse from "./Browse";
 import Course from "./Course";
 import Lesson from "./Lesson";
 import Forum from "./Forum";
+import Thread from "./Thread";
 
 export default class App extends Component {
   constructor() {
@@ -39,6 +40,12 @@ export default class App extends Component {
             <Route
               path="/forum/:forumId"
               render={(props) => <Forum {...props} />}
+            />
+          </Route>
+          <Route path="/thread">
+            <Route
+              path="/thread/:threadId"
+              render={(props) => <Thread {...props} />}
             />
           </Route>
         </Switch>
