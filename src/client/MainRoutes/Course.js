@@ -6,6 +6,8 @@ import Tabs from "react-bootstrap/Tabs";
 import axios from "axios";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
+import TOC from "./Course/TOC";
+import DescriptionTab from "./Course/DescriptionTab";
 
 export default class Course extends Component {
   constructor(props) {
@@ -60,21 +62,15 @@ export default class Course extends Component {
             {this.state.lessons.length == 0 ? (
               <> </>
             ) : (
-              this.state.lessons.map((lesson) => {
-                return (
-                  <Nav.Link
-                    key={lesson._id}
-                    as={Link}
-                    to={`/lesson/${lesson._id}`}
-                  >
-                    {lesson.title}
-                  </Nav.Link>
-                );
-              })
+              <TOC lessons={this.state.lessons} />
             )}
           </Tab>
           <Tab eventKey="description" title="Description" className="m-5">
-            {this.state.description == "" ? <></> : this.state.description}
+            {this.state.description == "" ? (
+              <></>
+            ) : (
+              <DescriptionTab description={this.state.description} />
+            )}
           </Tab>
           <Tab eventKey="discussion" title="Discussion" className="m-5" />
           <Tab eventKey="related" title="Related courses" className="m-5">

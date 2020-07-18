@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./MainRoutes/Home";
 import Navbar from "./Common/Navbar";
-import Main from "./Main";
-import About from "./About";
-import Browse from "./Browse";
-import Course from "./Course";
-import Lesson from "./Lesson";
-import Forum from "./Forum";
-import Thread from "./Thread";
+import Main from "./MainRoutes/Main";
+import About from "./MainRoutes/About";
+import Browse from "./MainRoutes/Browse";
+import Course from "./MainRoutes/Course";
+import Lesson from "./MainRoutes/Lesson";
+import Forum from "./MainRoutes/Forum";
+import Thread from "./MainRoutes/Thread";
+import Profile from "./Profile/Profile";
+import Edit from "./MainRoutes/Edit";
 
 export default class App extends Component {
   constructor() {
@@ -48,6 +50,8 @@ export default class App extends Component {
               render={(props) => <Thread {...props} />}
             />
           </Route>
+          <Route path="/profile" render={(props) => <Profile {...props} />} />
+          <Route path="/edit" render={(props) => <Edit {...props} />} />
         </Switch>
       </>
     );

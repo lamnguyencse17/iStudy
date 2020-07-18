@@ -7,7 +7,7 @@ export default class NoteBoard extends Component {
   render() {
     return (
       <>
-        <Link to={"/notes"} className="h2 mb-5">
+        <Link to={"/profile/notes"} className="h2 mb-5">
           View All Notes
         </Link>
         <Form>
