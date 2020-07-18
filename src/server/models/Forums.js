@@ -6,7 +6,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 export const forumSchema = new Forums({
   title: { type: String, required: true },
   users: [{ type: ObjectId, ref: "Users" }],
-  threads: { type: ObjectId, ref: "Threads" },
+  threads: [{ type: ObjectId, ref: "Threads" }],
   courseId: { type: ObjectId, ref: "Courses", required: true },
 });
 

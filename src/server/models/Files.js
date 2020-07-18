@@ -20,7 +20,6 @@ export const writeToGridFS = (file) => {
             owner: file.owner,
             date: Date.now(),
             lesson: file.lesson,
-            // add to lesson
           },
         });
         bucket.write(file.data, async (err) => {
@@ -52,7 +51,6 @@ export const getFileFromGridFS = (fileId) => {
         let file = await gridFSBucket
           .find({ _id: mongoose.Types.ObjectId(fileId) })
           .toArray();
-        console.log(file);
         let filename = file[0].filename;
         resolve({
           filename,
@@ -79,6 +77,7 @@ export const clearFileFromLesson = (lessonId) => {
           .toArray();
         gridFSBucket.delete(
           mongoose.Types.ObjectId(file[0]._id),
+          // eslint-disable-next-line no-unused-vars
           (err, result) => {
             if (err) {
               console.log(err);
@@ -98,11 +97,15 @@ export const clearFileFromLesson = (lessonId) => {
 
 const mongoConnection = () => {
   return new Promise((resolve, reject) => {
-    if (connection) resolve(connection);
+    if (connection) {
+      resolve(connection);
+    }
     MongoClient.connect(
       "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority",
       (err, db) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+        }
         connection = db;
         resolve(connection);
       }

@@ -10,17 +10,22 @@ export const threadSchema = new Threads({
   title: { type: String, required: true },
   content: { type: String, required: true },
   replies: [{ type: ObjectId, ref: "Replies" }],
+  forum: { type: ObjectId, ref: "Forums", required: true },
 });
 
 threadSchema.statics.getThread = async function (threadId) {
   return await this.findOne({ _id: mongoose.Types.ObjectId(threadId) })
-    .select("-__v -replies")
+    .select("-__v")
+    .populate({
+      path: "forum",
+      select: "title",
+      options: { lean: true },
+    })
     .populate({
       path: "poster",
       select: "name",
       options: { lean: true },
-    })
-    .lean();
+    });
 };
 
 threadSchema.statics.createThread = async function (threadDetails) {
