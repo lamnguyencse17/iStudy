@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Player from "./Lesson/Player";
 import NotePanel from "./Lesson/NotePanel";
 import Container from "react-bootstrap/Container";
-import Col from 'react-bootstrap/Col'
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import axios from "axios";
 
 export default class Lesson extends Component {
@@ -40,13 +41,15 @@ export default class Lesson extends Component {
           <> </>
         ) : (
           <Container fluid>
-            <Col sm={8} md = {12}>
-              <div className="h1">{this.state.title}</div>
-              <Player fileId={this.state.files} />
-            </Col>
-            <Col sm={4} md = {6}>
-              <NotePanel />
-            </Col>
+            <Row>
+              <Col sm={9}>
+                <div className="h1">{this.state.title}</div>
+                <Player fileId={this.state.files} />
+              </Col>
+              <Col sm={3}>
+                <NotePanel />
+              </Col>
+            </Row>
           </Container>
         )}
       </>
