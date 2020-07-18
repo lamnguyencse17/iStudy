@@ -16,6 +16,9 @@ forumSchema.statics.getForum = async function (forumId) {
     .populate({
       path: "threads",
       select: "created title",
+      populate: {
+        path: "replies",
+      },
       options: { lean: true },
     })
     .lean();

@@ -26,6 +26,14 @@ router.use(
 );
 
 router.use(
+  "/forums/",
+  (req, res, next) => {
+    next();
+  },
+  require("./models/forums")
+);
+
+router.use(
   "/courses/",
   (req, res, next) => {
     next();

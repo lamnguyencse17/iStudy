@@ -15,6 +15,7 @@ export default class Course extends Component {
       title: "",
       description: "",
       lessons: [],
+      forumId: "",
     };
   }
   componentDidMount() {
@@ -26,6 +27,7 @@ export default class Course extends Component {
         if (err) {
           console.log(err);
         } else {
+          console.log(res.data);
           this.setState({
             ...res.data,
           });
@@ -48,7 +50,11 @@ export default class Course extends Component {
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
           className="m-5"
-          onSelect={(key) => console.log(key)}
+          onSelect={(key) => {
+            if (key == "discussion") {
+              this.props.history.push(`/forum/${this.state.forumId}`);
+            }
+          }}
         >
           <Tab eventKey="table" title="Table of contents" className="m-5">
             {this.state.lessons.length == 0 ? (
@@ -70,9 +76,7 @@ export default class Course extends Component {
           <Tab eventKey="description" title="Description" className="m-5">
             {this.state.description == "" ? <></> : this.state.description}
           </Tab>
-          <Tab eventKey="discussion" title="Discussion" className="m-5">
-            A link will be here instead
-          </Tab>
+          <Tab eventKey="discussion" title="Discussion" className="m-5" />
           <Tab eventKey="related" title="Related courses" className="m-5">
             Placeholder
           </Tab>
