@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const Lessons = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
