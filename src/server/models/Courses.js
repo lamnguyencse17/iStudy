@@ -16,7 +16,7 @@ export const courseSchema = new Courses({
 
 courseSchema.statics.getCourse = async function (courseId) {
   return await this.findOne({ _id: mongoose.Types.ObjectId(courseId) })
-    .select("-__v -forumId")
+    .select("-__v")
     .populate({
       path: "lessons",
       select: "title",

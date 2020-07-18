@@ -43,5 +43,5 @@ replySchema.statics.clearReplies = async function (threadId) {
   return await this.deleteMany({ threadId: mongoose.Types.ObjectId(threadId) });
 };
 
-const replyModel = mongoose.model("replies", replySchema);
+const replyModel = mongoose.model("Replies", replySchema);
 export default replyModel;
