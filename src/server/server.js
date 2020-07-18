@@ -4,14 +4,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import upload from "express-fileupload";
-import courseModel from "./models/Courses";
-import userModel from "./models/Users";
-// import path from "path";
-// import dotenv from "dotenv";
 
 const data_uri =
   "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority";
-// dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 mongoose.connect(data_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

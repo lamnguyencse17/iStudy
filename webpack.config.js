@@ -1,6 +1,4 @@
 const path = require("path");
-const dotenv = require("dotenv");
-const webpack = require("webpack");
 
 module.exports = () => {
   return {
@@ -27,7 +25,7 @@ module.exports = () => {
             },
           },
           exclude: /node_modules/,
-        }
+        },
       ],
     },
     resolve: {

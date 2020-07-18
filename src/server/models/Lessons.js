@@ -35,10 +35,10 @@ lessonSchema.statics.deleteLesson = async function (lessonId) {
   return await this.deleteOne({ _id: mongoose.Types.ObjectId(lessonId) });
 };
 
-lessonSchema.statics.clearLessons = async function (forumId) {
-  // handle file deletion
-  return await this.deleteMany({ courseId: mongoose.Types.ObjectId(lessonId) });
-};
+// lessonSchema.statics.clearLessons = async function (forumId) {
+//   // handle file deletion
+//   return await this.deleteMany({ courseId: mongoose.Types.ObjectId(lessonId) });
+// };
 
 const lessonModel = mongoose.model("Lessons", lessonSchema);
 export default lessonModel;

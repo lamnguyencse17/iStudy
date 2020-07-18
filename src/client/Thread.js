@@ -140,6 +140,7 @@ export default class Thread extends Component {
               this.state.replies.map((reply) => {
                 return (
                   <div
+                    key={reply._id}
                     style={{
                       width: "100%",
                       height: "100%",

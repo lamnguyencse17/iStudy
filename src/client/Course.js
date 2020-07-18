@@ -56,7 +56,11 @@ export default class Course extends Component {
             ) : (
               this.state.lessons.map((lesson) => {
                 return (
-                  <Nav.Link as={Link} to={`/lesson/${lesson._id}`}>
+                  <Nav.Link
+                    key={lesson._id}
+                    as={Link}
+                    to={`/lesson/${lesson._id}`}
+                  >
                     {lesson.title}
                   </Nav.Link>
                 );

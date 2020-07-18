@@ -37,4 +37,9 @@ module.exports = {
     "symbol-description": "error",
     yoda: ["error", "never", { exceptRange: true }],
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };

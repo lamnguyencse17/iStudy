@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
     poster,
     content,
     title,
-    content,
   });
   return res.status(200).json(result);
 });
