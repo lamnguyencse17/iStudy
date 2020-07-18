@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Player from "./Lesson/Player";
-import NotePanel from "./Lesson/NotePanel";
+import SidePanel from "./Lesson/SidePanel";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -47,7 +47,7 @@ export default class Lesson extends Component {
                 <Player fileId={this.state.files} />
               </Col>
               <Col sm={3}>
-                <NotePanel />
+                <SidePanel />
               </Col>
             </Row>
           </Container>
