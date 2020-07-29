@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+import passport from "passport";
 
 router.use(
   "/notes/",
@@ -59,9 +60,7 @@ router.use(
 
 router.use(
   "/users/",
-  (req, res, next) => {
-    next();
-  },
+  passport.authenticate("jwt", { session: false }),
   require("./models/users")
 );
 

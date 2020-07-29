@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { setUser } from "../actions/user";
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,8 +29,8 @@ export default class Signup extends Component {
         if (err) {
           console.log(err);
         } else {
-          console.log(res.data);
-          this.props.history.push("/login");
+          this.props.setUser(res.data.token);
+          this.props.history.push("/home");
         }
       });
   };
@@ -73,3 +77,9 @@ export default class Signup extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setUser }, dispatch);
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Signup));

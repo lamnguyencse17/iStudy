@@ -4,12 +4,11 @@ import userModel from "../../models/Users";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  let result = await userModel.getUser(req);
+  let result = await userModel.getUser(req.body._id);
   if (result) {
     return res.status(200).json(result);
   }
-  result = await userModel.createUser(req.body);
-  return res.status(200).json(result);
+  return res.status(400).json({ message: "Something went wrong" });
 });
 
 router.delete("/:userId", async (req, res) => {

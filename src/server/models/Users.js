@@ -15,7 +15,15 @@ export const userSchema = new Users({
   notes: [{ type: ObjectId, ref: "Notes" }],
 });
 
-userSchema.statics.getUser = async function (email) {
+userSchema.statics.getUser = async function (_id) {
+  return await this.findOne(
+    { _id: mongoose.Types.ObjectId(_id) },
+    { password: 0 }
+  )
+    .select("-__v")
+    .lean();
+};
+userSchema.statics.getUserByEmail = async function (email) {
   return await this.findOne({ email }).select("-__v").lean();
 };
 

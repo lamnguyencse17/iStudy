@@ -41,9 +41,15 @@ class NavBar extends Component {
           </Form>
           {this.props.location.pathname == "/" ? (
             <Nav className="mr-1">
-              <Nav.Link as={Link} to="/home">
-                START
-              </Nav.Link>
+              {this.props.user.token == null ? (
+                <Nav.Link as={Link} to="/login">
+                  START
+                </Nav.Link>
+              ) : (
+                <Nav.Link as={Link} to="/home">
+                  START
+                </Nav.Link>
+              )}
             </Nav>
           ) : (
             <Nav className="mr-5">

@@ -8,6 +8,7 @@ opts.secretOrKey = "1234567890";
 module.exports = (passport) => {
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
+      console.log(jwt_payload);
       userModel
         .findById(jwt_payload._id)
         .then((user) => {

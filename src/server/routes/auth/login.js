@@ -14,18 +14,16 @@ router.post("/", async (req, res) => {
     return res.status(400).json(errors);
   }
   const password = req.body.password;
-  let result = await userModel.getUser(req.body.email);
+  let result = await userModel.getUserByEmail(req.body.email);
   if (!result) {
     return res.status(404).json({ error: "Email not found" });
   }
-  console.log(result.password);
   bcrypt.compare(password, result.password).then((isMatch) => {
     if (isMatch) {
       const payload = {
         _id: result._id,
-        name: result.name,
+        name: result.email,
       };
-
       jwt.sign(
         payload,
         "1234567890",
