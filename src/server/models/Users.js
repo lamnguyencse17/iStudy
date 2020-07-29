@@ -9,6 +9,7 @@ export const userSchema = new Users({
   name: { type: String, required: true },
   email: { type: String, required: true },
   type: { type: Number, required: true },
+  password: { type: String, required: true },
   courses: [{ type: ObjectId, ref: "Courses" }],
   forums: [{ type: ObjectId, ref: "Forums" }],
   notes: [{ type: ObjectId, ref: "Notes" }],
@@ -19,11 +20,12 @@ userSchema.statics.getUser = async function (email) {
 };
 
 userSchema.statics.createUser = async function (userDetails) {
-  let { name, email, type } = userDetails;
+  let { name, email, type, password } = userDetails;
   let result = await this.create({
     name,
     email,
     type,
+    password,
   });
   result = result.toObject();
   delete result.__v;

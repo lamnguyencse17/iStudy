@@ -42,7 +42,11 @@ export default class Course extends Component {
     return (
       <>
         <Route exact path={`${this.props.match.path}/`}>
-          <Container fluid>
+          <Container
+            fluid
+            className="background-gradient"
+            style={{ height: "94%" }}
+          >
             <Image
               fluid
               src="https://www.ox.ac.uk/sites/files/oxford/styles/ow_large_feature/public/field/field_image_main/Choosing%20what%20to%20study.jpg?itok=udCvmqt9"
@@ -52,31 +56,52 @@ export default class Course extends Component {
               {this.state.title == "" ? <></> : this.state.title}
             </div>
             <Tabs
+              style={{ backgroundColor: "white" }}
               defaultActiveKey="profile"
               id="uncontrolled-tab-example"
-              className="m-5"
+              className="mt-5 ml-5 mr-5"
               onSelect={(key) => {
                 if (key == "discussion") {
                   this.props.history.push(`/forum/${this.state.forumId}`);
                 }
               }}
             >
-              <Tab eventKey="table" title="Table of contents" className="m-5">
+              <Tab
+                style={{ backgroundColor: "white" }}
+                eventKey="table"
+                title="Table of contents"
+                className="ml-5 mr-5"
+              >
                 {this.state.lessons.length == 0 ? (
                   <> </>
                 ) : (
                   <TOC lessons={this.state.lessons} />
                 )}
               </Tab>
-              <Tab eventKey="description" title="Description" className="m-5">
+              <Tab
+                style={{ backgroundColor: "white" }}
+                eventKey="description"
+                title="Description"
+                className="ml-5 mr-5"
+              >
                 {this.state.description == "" ? (
                   <></>
                 ) : (
                   <DescriptionTab description={this.state.description} />
                 )}
               </Tab>
-              <Tab eventKey="discussion" title="Discussion" className="m-5" />
-              <Tab eventKey="related" title="Related courses" className="m-5">
+              <Tab
+                style={{ backgroundColor: "white" }}
+                eventKey="discussion"
+                title="Discussion"
+                className="ml-5 mr-5"
+              />
+              <Tab
+                style={{ backgroundColor: "white" }}
+                eventKey="related"
+                title="Related courses"
+                className="ml-5 mr-5"
+              >
                 Placeholder
               </Tab>
             </Tabs>

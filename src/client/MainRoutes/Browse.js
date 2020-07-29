@@ -20,7 +20,11 @@ export default class Browse extends Component {
 
   render() {
     return (
-      <Container fluid className="m-auto p-3">
+      <Container
+        fluid
+        className="p-3 background-gradient"
+        style={{ height: "94%" }}
+      >
         {this.state.courses.length == 0 ? (
           <> </>
         ) : (

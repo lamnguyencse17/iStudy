@@ -2,19 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 router.use(
-  "/models",
+  "/register",
   (req, res, next) => {
     next();
   },
-  require("./models")
+  require("./auth/register")
 );
 
 router.use(
-  "/auth",
+  "/login",
   (req, res, next) => {
     next();
   },
-  require("./auth")
+  require("./auth/login")
 );
 
 module.exports = router;

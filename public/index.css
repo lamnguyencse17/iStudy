@@ -43,3 +43,13 @@ body {
   background-color: #373737;
   color: #7beced;
 }
+
+.background-gradient {
+  background: rgb(141, 145, 164);
+  background: linear-gradient(
+    0deg,
+    rgba(141, 145, 164, 1) 0%,
+    rgba(234, 152, 164, 1) 100%
+  );
+  background-size: auto;
+}

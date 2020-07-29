@@ -11,6 +11,9 @@ import Forum from "./MainRoutes/Forum";
 import Thread from "./MainRoutes/Thread";
 import Profile from "./Profile/Profile";
 import Edit from "./MainRoutes/Edit";
+import Notes from "./Profile/Notes";
+import Signup from "./Auth/Signup";
+import Login from "./Auth/Login";
 
 export default class App extends Component {
   constructor() {
@@ -51,6 +54,9 @@ export default class App extends Component {
             />
           </Route>
           <Route path="/profile" render={(props) => <Profile {...props} />} />
+          <Route path="/signup" render={(props) => <Signup {...props} />} />
+          <Route path="/login" render={(props) => <Login {...props} />} />
+          <Route path="/notes" render={(props) => <Notes {...props} />} />
           <Route path="/edit" render={(props) => <Edit {...props} />} />
         </Switch>
       </>

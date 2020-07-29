@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import upload from "express-fileupload";
+import passport from "passport";
 
 const data_uri =
   "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority";
@@ -20,7 +21,8 @@ app.use(
     debug: true,
   })
 );
-
+app.use(passport.initialize());
+require("./helpers/passport")(passport);
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(bodyParser.json());
