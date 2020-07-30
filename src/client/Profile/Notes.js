@@ -16,7 +16,7 @@ class Notes extends Component {
   componentDidMount() {
     setAuthToken(this.props.token);
     axios
-      .get("http://localhost:3000/api/models/users/notes")
+      .get("https://istudy-ttcnpm.herokuapp.com/api/models/users/notes")
       .then((res, err) => {
         if (err) {
           console.log(err);

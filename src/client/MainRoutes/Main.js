@@ -13,12 +13,14 @@ export default class Main extends Component {
     };
   }
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/models/courses`).then((res) => {
-      let originalData = res.data;
-      this.setState({
-        courses: [...originalData.slice(0, 3)],
+    axios
+      .get(`https://istudy-ttcnpm.herokuapp.com/api/models/courses`)
+      .then((res) => {
+        let originalData = res.data;
+        this.setState({
+          courses: [...originalData.slice(0, 3)],
+        });
       });
-    });
   }
   render() {
     return (

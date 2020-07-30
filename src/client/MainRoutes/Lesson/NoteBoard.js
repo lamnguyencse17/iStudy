@@ -16,7 +16,7 @@ class NoteBoard extends Component {
   handleSaveNote = () => {
     console.log(this.props.lessonId);
     setAuthToken(this.props.token);
-    axios.post("http://localhost:3000/api/models/notes", {
+    axios.post("https://istudy-ttcnpm.herokuapp.com/api/models/notes", {
       lesson: this.props.lessonId,
       title: "Default Title",
       content: this.state.noteContent,

@@ -17,7 +17,7 @@ export default class Signup extends Component {
   };
   handleSignUp = () => {
     axios
-      .post("http://localhost:3000/api/auth/register", {
+      .post("https://istudy-ttcnpm.herokuapp.com/api/auth/register", {
         email: this.state.email,
         password: this.state.password,
         name: this.state.name,

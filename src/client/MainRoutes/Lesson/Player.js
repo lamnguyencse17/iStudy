@@ -7,7 +7,7 @@ export default class Player extends Component {
     return (
       <Container fluid>
         <ReactPlayer
-          url={`http://localhost:3000/api/models/files/${this.props.fileId}`}
+          url={`https://istudy-ttcnpm.herokuapp.com/api/models/files/${this.props.fileId}`}
           width="100%"
           height="100%"
           controls={true}

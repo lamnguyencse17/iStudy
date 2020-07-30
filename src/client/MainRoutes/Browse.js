@@ -11,11 +11,13 @@ export default class Browse extends Component {
     };
   }
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/models/courses`).then((res) => {
-      this.setState({
-        courses: [...res.data],
+    axios
+      .get(`https://istudy-ttcnpm.herokuapp.com/api/models/courses`)
+      .then((res) => {
+        this.setState({
+          courses: [...res.data],
+        });
       });
-    });
   }
 
   render() {

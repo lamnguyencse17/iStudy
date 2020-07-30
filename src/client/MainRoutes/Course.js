@@ -24,7 +24,7 @@ export default class Course extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:3000/api/models/courses/${this.props.match.params.courseId}`
+        `https://istudy-ttcnpm.herokuapp.com/api/models/courses/${this.props.match.params.courseId}`
       )
       .then((res, err) => {
         if (err) {

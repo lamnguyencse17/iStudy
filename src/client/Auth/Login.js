@@ -21,7 +21,7 @@ class Signup extends Component {
   };
   handleLogin = () => {
     axios
-      .post("http://localhost:3000/api/auth/login", {
+      .post("https://istudy-ttcnpm.herokuapp.com/api/auth/login", {
         email: this.state.email,
         password: this.state.password,
       })
