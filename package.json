@@ -4,8 +4,8 @@
   "description": "iStudy",
   "main": "index.js",
   "scripts": {
-    "fe": "webpack-dev-server --mode development",
-    "be": "nodemon --exec babel-node src/server/server.js --ignore 'src/client/*'"
+    "start": "node ./dist/server.js",
+    "build": "babel ./src/server/ -D --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -18,34 +18,19 @@
   },
   "homepage": "https://github.com/lamnguyencse17/iStudy#readme",
   "dependencies": {
-    "axios": "^0.19.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.0",
     "compression": "^1.7.4",
-    "concurrently": "^5.2.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.9.26",
-    "mqtt": "^4.1.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.3.0",
-    "react-dom": "^16.13.1",
-    "react-player": "^2.6.0",
-    "react-redux": "^7.2.1",
-    "react-router-dom": "^5.1.2",
-    "react-spring": "^8.0.27",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
     "validator": "^13.1.1"
   },
   "devDependencies": {
@@ -61,14 +46,7 @@
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.20.5",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.3",
-    "prettier": "^2.0.4",
-    "redux-devtools": "^3.6.0",
-    "redux-devtools-extension": "^2.13.8",
-    "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.10.3"
+    "morgan": "^1.10.0"
   },
   "babel": {
     "presets": [
@@ -77,12 +55,7 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
-      [
-        "module-resolver",
-        {
-          "alias": {}
-        }
-      ]
+      "@babel/plugin-transform-runtime"
     ]
   }
 }

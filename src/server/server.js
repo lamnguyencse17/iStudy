@@ -5,6 +5,7 @@ import cors from "cors";
 import morgan from "morgan";
 import upload from "express-fileupload";
 import passport from "passport";
+import compression from "compression";
 
 const data_uri =
   "mongodb+srv://ttcnpm:ttcnpm@ttcnpm-uiisz.gcp.mongodb.net/iStudy?retryWrites=true&w=majority";
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 require("./helpers/passport")(passport);
 app.use(morgan("tiny"));
 app.use(cors());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

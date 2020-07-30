@@ -1,9 +1,5 @@
 import { MongoClient, GridFSBucket } from "mongodb";
-import dotenv from "dotenv";
-import path from "path";
 import mongoose from "mongoose";
-
-dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 let connection;
 export const writeToGridFS = (file) => {
