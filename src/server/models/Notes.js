@@ -27,6 +27,7 @@ noteSchema.statics.createNote = async function (noteDetails) {
     lesson: mongoose.Types.ObjectId(lesson),
   });
   result = result.toObject();
+  userModel.addNote(result.owner, result._id);
   delete result.__v;
   delete result.owner;
   return result;

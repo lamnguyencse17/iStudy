@@ -4,25 +4,18 @@ import passport from "passport";
 
 router.use(
   "/notes/",
-  (req, res, next) => {
-    next();
-  },
+  passport.authenticate("jwt", { session: false }),
   require("./models/notes")
 );
 
 router.use(
   "/files/",
-  (req, res, next) => {
-    next();
-  },
   require("./models/files")
 );
 
 router.use(
   "/lessons/",
-  (req, res, next) => {
-    next();
-  },
+  passport.authenticate("jwt", { session: false }),
   require("./models/lessons")
 );
 

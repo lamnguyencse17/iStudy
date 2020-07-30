@@ -52,7 +52,18 @@ userSchema.statics.addCourse = async function (userId, courseId) {
     { _id: mongoose.Types.ObjectId(userId) },
     {
       $push: {
-        course: mongoose.Types.ObjectId(courseId),
+        courses: mongoose.Types.ObjectId(courseId),
+      },
+    }
+  );
+};
+
+userSchema.statics.addNote = async function (userId, noteId) {
+  return await this.updateOne(
+    { _id: mongoose.Types.ObjectId(userId) },
+    {
+      $push: {
+        notes: mongoose.Types.ObjectId(noteId),
       },
     }
   );

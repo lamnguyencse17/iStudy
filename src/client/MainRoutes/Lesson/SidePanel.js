@@ -14,7 +14,11 @@ export default class SidePanel extends Component {
             <Table />
           </Tab>
           <Tab eventKey="profile" title="Note">
-            <NoteBoard />
+            {this.props.lessonId ? (
+              <NoteBoard lessonId={this.props.lessonId} />
+            ) : (
+              <></>
+            )}
           </Tab>
         </Tabs>
       </Container>
