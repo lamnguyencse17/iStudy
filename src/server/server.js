@@ -36,4 +36,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/", require("./routes/routes"));
 
-app.listen(3000, () => console.info(`Running on 3000`));
+app.listen(process.env.PORT || 3000, () =>
+  console.info(`Running on ${process.env.PORT || 3000}`)
+);
