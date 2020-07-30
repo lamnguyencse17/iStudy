@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/lamnguyencse17/iStudy/issues"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "homepage": "https://github.com/lamnguyencse17/iStudy#readme",
   "dependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
@@ -31,9 +34,7 @@
     "mongoose": "^5.9.26",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "validator": "^13.1.1"
-  },
-  "devDependencies": {
+    "validator": "^13.1.1",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/node": "^7.10.5",
@@ -41,7 +42,6 @@
     "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/polyfill": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "eslint": "^6.8.0",
@@ -51,7 +51,6 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@babel/preset-react"
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
