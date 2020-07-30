@@ -19,7 +19,7 @@ export default class Thread extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://istudy-ttcnpm.herokuapp.com/api/models/threads/${this.props.match.params.threadId}`
+        `https://istudy-backend.herokuapp.com/api/models/threads/${this.props.match.params.threadId}`
       )
       .then((res, err) => {
         if (err) {

@@ -12,7 +12,7 @@ export default class Browse extends Component {
   }
   componentDidMount() {
     axios
-      .get(`https://istudy-ttcnpm.herokuapp.com/api/models/courses`)
+      .get(`https://istudy-backend.herokuapp.com/api/models/courses`)
       .then((res) => {
         this.setState({
           courses: [...res.data],

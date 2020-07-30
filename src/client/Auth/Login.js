@@ -21,7 +21,7 @@ class Signup extends Component {
   };
   handleLogin = () => {
     axios
-      .post("https://istudy-ttcnpm.herokuapp.com/api/auth/login", {
+      .post("https://istudy-backend.herokuapp.com/api/auth/login", {
         email: this.state.email,
         password: this.state.password,
       })

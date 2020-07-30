@@ -10,7 +10,7 @@ export const setUser = (token) => (dispatch) => {
   // Decode token to get user data
   const decoded = jwt_decode(token);
   axios
-    .post("https://istudy-ttcnpm.herokuapp.com/api/models/users", {
+    .post("https://istudy-backend.herokuapp.com/api/models/users", {
       _id: decoded._id,
     })
     .then((res, err) => {

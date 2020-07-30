@@ -14,7 +14,7 @@ export default class Main extends Component {
   }
   componentDidMount() {
     axios
-      .get(`https://istudy-ttcnpm.herokuapp.com/api/models/courses`)
+      .get(`https://istudy-backend.herokuapp.com/api/models/courses`)
       .then((res) => {
         let originalData = res.data;
         this.setState({

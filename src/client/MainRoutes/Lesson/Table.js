@@ -5,7 +5,7 @@ export default class Table extends Component {
   // componentDidMount(){
   //   axios
   //     .get(
-  //       `https://istudy-ttcnpm.herokuapp.com/api/models/courses/${this.props.match.params.courseId}`
+  //       `https://istudy-backend.herokuapp.com/api/models/courses/${this.props.match.params.courseId}`
   //     )
   //     .then((res, err) => {
   //       if (err) {

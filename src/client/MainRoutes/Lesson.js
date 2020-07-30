@@ -25,7 +25,7 @@ class Lesson extends Component {
     setAuthToken(this.props.token);
     axios
       .get(
-        `https://istudy-ttcnpm.herokuapp.com/api/models/lessons/${this.props.match.params.lessonId}`
+        `https://istudy-backend.herokuapp.com/api/models/lessons/${this.props.match.params.lessonId}`
       )
       .then((res, err) => {
         if (err) {

@@ -17,7 +17,7 @@ export default class Forum extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://istudy-ttcnpm.herokuapp.com/api/models/forums/${this.props.match.params.forumId}`
+        `https://istudy-backend.herokuapp.com/api/models/forums/${this.props.match.params.forumId}`
       )
       .then((res, err) => {
         if (err) {
