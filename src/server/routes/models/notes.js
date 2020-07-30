@@ -9,7 +9,8 @@ router.get("/:noteId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let { owner, content, title, lesson } = req.body;
+  let { content, title, lesson } = req.body;
+  let owner = req.body._id;
   let result = await noteModel.createNote({ owner, content, title, lesson });
   return res.status(200).json(result);
 });

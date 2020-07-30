@@ -13,8 +13,7 @@ module.exports = (passport) => {
         .findById(jwt_payload._id)
         .then((user) => {
           if (user) {
-            console.log(jwt_payload)
-            req.body.owner = jwt_payload._id;
+            req.body._id = jwt_payload._id;
             return done(null, user);
           }
           return done(null, false);

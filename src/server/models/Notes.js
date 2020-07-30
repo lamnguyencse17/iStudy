@@ -12,8 +12,8 @@ export const noteSchema = new Notes({
   lesson: { type: ObjectId, ref: "Lessons", required: true },
 });
 
-noteSchema.statics.getNote = async function (noteId) {
-  return await this.findOne({ _id: mongoose.Types.ObjectId(noteId) })
+noteSchema.statics.getNoteByOwner = async function (ownerId) {
+  return await this.find({ owner: mongoose.Types.ObjectId(ownerId) })
     .select("-__v -owner")
     .lean();
 };

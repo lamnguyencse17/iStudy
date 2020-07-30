@@ -14,7 +14,7 @@ class NoteBoard extends Component {
     };
   }
   handleSaveNote = () => {
-    console.log(this.props.lessonId)
+    console.log(this.props.lessonId);
     setAuthToken(this.props.token);
     axios.post("http://localhost:3000/api/models/notes", {
       lesson: this.props.lessonId,
@@ -28,7 +28,7 @@ class NoteBoard extends Component {
   render() {
     return (
       <>
-        <Link to={"/profile/notes"} className="h2 mb-5">
+        <Link to={"/notes"} className="h2 mb-5">
           View All Notes
         </Link>
         <Form>
