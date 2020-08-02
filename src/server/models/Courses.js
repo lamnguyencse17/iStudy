@@ -35,6 +35,13 @@ courseSchema.statics.getManyCourses = async function () {
   return result;
 };
 
+courseSchema.statics.findCourses = async function (term) {
+  let result = await this.find({
+    title: { $regex: new RegExp(`.*${term}.*`, "i") },
+  }).lean();
+  return result;
+};
+
 courseSchema.statics.createCourse = async function (courseDetails) {
   let { owner, title, description } = courseDetails;
   let result = await this.create({

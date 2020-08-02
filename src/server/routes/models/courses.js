@@ -9,6 +9,11 @@ router.get("/:courseId", async (req, res) => {
   return res.status(200).json(result);
 });
 
+router.post("/search", async (req, res) => {
+  let result = await courseModel.findCourses(req.body.term);
+  return res.status(200).json(result);
+});
+
 router.get("/", async (req, res) => {
   let result = await courseModel.getManyCourses();
   return res.status(200).json(result);

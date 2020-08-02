@@ -5,12 +5,29 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Menu from "./Menu";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import axios from "axios";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.state = {
+      term: "",
+    };
   }
+  handleSearch = () => {
+    axios
+      .post("http://localhost:3000/api/models/courses/search", {
+        term: this.state.term,
+      })
+      .then((res, err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.props.history.push("/results", { courses: res.data });
+        }
+      });
+  };
   render() {
     return (
       <>
@@ -30,14 +47,18 @@ class NavBar extends Component {
             inline
             className="mr-auto w-50"
             onChange={(e) => {
-              console.log(e.target.value);
+              this.setState({ term: e.target.value });
             }}
           >
             <FormControl
               type="text"
               placeholder="Search"
-              className="mr-sm-2 w-100"
+              className="mr-sm-2"
+              style={{ width: "75%" }}
             />
+            <Button variant="primary" onClick={this.handleSearch}>
+              Search
+            </Button>
           </Form>
           {this.props.location.pathname == "/" ? (
             <Nav className="mr-1">

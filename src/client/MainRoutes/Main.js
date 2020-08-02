@@ -23,7 +23,7 @@ export default class Main extends Component {
   render() {
     return (
       <>
-        <Container fluid className="m-auto mb-5">
+        <Container fluid className="m-auto mb-5 background-gradient">
           <div className="h1 mb-5">BACK TO LEARNING</div>
           <Container fluid className="m-2">
             <Row>
