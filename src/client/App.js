@@ -17,6 +17,7 @@ import Notes from "./Profile/Notes";
 import Signup from "./Auth/Signup";
 import Login from "./Auth/Login";
 import Signout from "./Auth/Signout";
+import SearchResults from "./MainRoutes/SearchResults";
 
 class App extends Component {
   constructor() {
@@ -32,6 +33,10 @@ class App extends Component {
           <Route path="/about" render={(props) => <About {...props} />} />
           <Route path="/home" render={(props) => <Main {...props} />} />
           <Route path="/browse" render={(props) => <Browse {...props} />} />
+          <Route
+            path="/results"
+            render={(props) => <SearchResults {...props} />}
+          />
           <Route path="/lesson">
             <Route
               path="/lesson/:lessonId"
